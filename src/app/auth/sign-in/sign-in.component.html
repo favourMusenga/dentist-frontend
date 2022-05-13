@@ -1,1 +1,53 @@
-<p>sign-in works!</p>
+<form class="form" (ngSubmit)="onSubmit()" #loginForm="ngForm">
+  <legend class="form-heading">Sign In</legend>
+  <div class="form-group">
+    <label for="email">email: </label>
+    <input
+      type="email"
+      name="email"
+      id="email"
+      #email="ngModel"
+      ngModel
+      required
+      email
+    />
+    <div
+      *ngIf="email.errors?.['required'] && email.touched"
+      class="input-error"
+    >
+      email required
+    </div>
+    <div *ngIf="email.errors?.['email'] && email.touched" class="input-error">
+      email invalid
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="password">password: </label>
+    <input
+      type="password"
+      name="password"
+      id="password"
+      #password="ngModel"
+      ngModel
+      required
+    />
+    <div
+      *ngIf="password.touched && password.errors?.['required']"
+      class="input-error"
+    >
+      password required
+    </div>
+  </div>
+  <div class="btn-group">
+    <button
+      class="btn btn-primary"
+      type="submit"
+      [disabled]="loginForm.invalid"
+    >
+      sign in
+    </button>
+    <button class="btn btn-secondary" type="button" (click)="switchToSignUp()">
+      switch to create account
+    </button>
+  </div>
+</form>

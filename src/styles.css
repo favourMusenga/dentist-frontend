@@ -1,1 +1,126 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 16px;
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+
+  overflow: overlay;
+}
+
+::-webkit-scrollbar {
+  width: 1em;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(19, 19, 19, 0.521);
+}
+
+.form {
+  background-color: #fff;
+  padding: 0.8rem 1.3rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-heading {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.form-group {
+  margin-bottom: 0.3rem;
+}
+
+.form-group label,
+.form-group input {
+  display: block;
+  font-size: 1.2rem;
+}
+
+.form-group input,
+.form-group select {
+  width: 350px;
+  padding: 5px;
+}
+
+.form-group input:focus {
+  outline: none;
+  border: 1px solid #69f0ae;
+  box-shadow: 0px 0px 14px #69f0ae;
+}
+
+.form-group select {
+  font-size: 1.5rem;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.8rem;
+}
+
+.input-error {
+  color: #ff6347;
+}
+
+.btn {
+  padding: 10px;
+  border: none;
+  font-size: 1.2rem;
+}
+
+.btn:hover {
+  cursor: pointer;
+  border: 1px solid #69f0ae;
+  box-shadow: 0px 0px 14px #69f0ae;
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background-color: #00c853;
+}
+
+.btn-secondary {
+  border: 1px solid #000;
+}
+
+@media screen and (max-width: 420px) {
+  .form-group label,
+  .form-group input {
+    font-size: 1rem;
+    width: 100%;
+  }
+  .form-group select {
+    width: 100%;
+    font-size: 1rem;
+  }
+  .form {
+    width: 85vw;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .btn-group {
+    flex-direction: column;
+  }
+  .btn {
+    margin-bottom: 0.8rem;
+  }
+}
