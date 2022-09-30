@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -9,7 +10,8 @@ import { Router } from '@angular/router';
 })
 export class SignInComponent implements OnInit {
   @ViewChild('loginForm', { static: true }) loginFormEl!: NgForm;
-  constructor(private router: Router) {}
+  errorResponse: string = '';
+  constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {}
 
@@ -18,6 +20,14 @@ export class SignInComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.loginFormEl.controls);
+    this.authService
+      .signIn(this.loginFormEl.value.email, this.loginFormEl.value.password)
+      .subscribe({
+        next: (_) => {
+          this.loginFormEl.resetForm();
+          this.router.navigateByUrl('/appointment/dashboard');
+        },
+        error: (err) => (this.errorResponse = err.message),
+      });
   }
 }

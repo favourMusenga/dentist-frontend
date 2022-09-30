@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -8,6 +9,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./sign-up.component.css'],
 })
 export class SignUpComponent implements OnInit {
+  errorResponse: string = '';
   signupForm: FormGroup = new FormGroup({
     firstName: new FormControl(null, [
       Validators.required,
@@ -30,7 +32,7 @@ export class SignUpComponent implements OnInit {
     ]),
     cPassword: new FormControl(null, [Validators.required]),
   });
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {}
 
@@ -38,6 +40,30 @@ export class SignUpComponent implements OnInit {
     this.router.navigate(['auth', 'sign-in']);
   }
   onSubmit() {
-    console.log(this.signupForm.value);
+    const data = this.authService.signUp(
+      this.signupForm.value.firstName,
+      this.signupForm.value.lastName,
+      this.signupForm.value.email,
+      this.signupForm.value.dob,
+      this.signupForm.value.phoneNumber,
+      this.signupForm.value.gender,
+      this.signupForm.value.password
+    );
+
+    data.subscribe({
+      next: (client) => {
+        console.log(client);
+        this.signupForm.reset();
+        this.authService.signIn(client.email, this.signupForm.value.password);
+      },
+      error: (err) => (this.errorResponse = err.message),
+    });
+  }
+
+  isNotConfirmPasswordEqualToPassword(): boolean {
+    return (
+      this.signupForm.get('cPassword')?.value !==
+      this.signupForm.get('password')?.value
+    );
   }
 }

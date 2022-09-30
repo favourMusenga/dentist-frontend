@@ -145,18 +145,21 @@
     <div
       *ngIf="
         signupForm.get('cPassword')?.touched &&
-        signupForm.get('cPassword')?.value !== signupForm.get('password')?.value
+        isNotConfirmPasswordEqualToPassword()
       "
       class="input-error"
     >
       not matching password
     </div>
   </div>
+  <div *ngIf="errorResponse" class="input-error">
+    {{ errorResponse }}
+  </div>
   <div class="btn-group">
     <button
       class="btn btn-primary"
       type="submit"
-      [disabled]="signupForm.invalid"
+      [disabled]="signupForm.invalid || isNotConfirmPasswordEqualToPassword()"
     >
       sign up
     </button>

@@ -5,11 +5,13 @@ import { AppointmentHistoryComponent } from './appointment-history/appointment-h
 import { ActiveAppointmentComponent } from './active-appointment/active-appointment.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppointmentComponent } from './appointment.component';
+import { AuthGuard } from '../auth/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: AppointmentComponent,
+    canActivate: [AuthGuard],
     children: [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'active', component: ActiveAppointmentComponent },
