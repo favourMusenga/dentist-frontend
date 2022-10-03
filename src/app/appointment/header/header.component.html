@@ -1,1 +1,42 @@
-<p>header works!</p>
+<header class="container">
+  <h1 class="logo">Dentist care</h1>
+  <div (click)="onOpenNav()" class="open-icon">
+    <span class="material-symbols-outlined"> menu </span>
+  </div>
+  <nav [ngClass]="{ 'open-menu': isOpen }">
+    <ul class="nav-list">
+      <div (click)="onCloseNav()" class="close-btn">
+        <span class="material-symbols-outlined"> close </span>
+      </div>
+      <li
+        class="nav-item"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <a routerLink="/dashboard"> dashboard </a>
+      </li>
+      <li
+        class="nav-item"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <a routerLink="/active"> active appointment </a>
+      </li>
+      <li
+        class="nav-item"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <a routerLink="/create"> create appointment </a>
+      </li>
+      <li
+        class="nav-item"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <a routerLink="/history"> history </a>
+      </li>
+      <li (click)="signOut()" class="nav-item">sign out</li>
+    </ul>
+  </nav>
+</header>

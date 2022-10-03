@@ -45,7 +45,7 @@
     <button
       class="btn btn-primary"
       type="submit"
-      [disabled]="loginForm.invalid"
+      [disabled]="loginForm.invalid || isDisabled"
     >
       sign in
     </button>

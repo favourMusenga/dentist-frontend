@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;900&display=swap");
+
+header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.logo {
+  font-family: "Orbitron", sans-serif;
+  text-transform: uppercase;
+  font-size: clamp(1.5rem, 5vw, 2.1rem);
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+.nav-item {
+  margin-right: 0.5rem;
+  text-decoration: underline;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.nav-item a {
+  color: #000;
+}
+
+.nav-item:hover,
+.nav-item a:hover {
+  color: var(--secondary-color);
+}
+
+.active-link a {
+  font-weight: bold;
+  color: var(--secondary-color);
+}
+
+.open-icon,
+.close-btn {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1020px) {
+  .open-menu {
+    display: block;
+  }
+  .open-icon,
+  .close-btn {
+    display: block;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 30px;
+    right: 50px;
+  }
+
+  nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+    display: none;
+  }
+
+  .nav-list {
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary-color);
+    position: relative;
+  }
+
+  .nav-item {
+    margin-right: 0;
+    margin-bottom: 0.6rem;
+    font-size: 1.5rem;
+  }
+}

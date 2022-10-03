@@ -10,6 +10,8 @@ import { AuthService } from '../auth.service';
 })
 export class SignUpComponent implements OnInit {
   errorResponse: string = '';
+  isDisabled = false;
+
   signupForm: FormGroup = new FormGroup({
     firstName: new FormControl(null, [
       Validators.required,
@@ -40,6 +42,7 @@ export class SignUpComponent implements OnInit {
     this.router.navigate(['auth', 'sign-in']);
   }
   onSubmit() {
+    this.isDisabled = true;
     const data = this.authService.signUp(
       this.signupForm.value.firstName,
       this.signupForm.value.lastName,
@@ -55,8 +58,12 @@ export class SignUpComponent implements OnInit {
         console.log(client);
         this.signupForm.reset();
         this.authService.signIn(client.email, this.signupForm.value.password);
+        this.isDisabled = false;
       },
-      error: (err) => (this.errorResponse = err.message),
+      error: (err) => {
+        this.isDisabled = false;
+        this.errorResponse = err.message;
+      },
     });
   }
 

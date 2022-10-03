@@ -8,6 +8,14 @@
   box-sizing: border-box;
 }
 
+:root {
+  --primary-color: #69f0ae;
+  --secondary-color: #6a69f0;
+  --error-color: #ff6347;
+  --primary-color-dark: #00c853;
+  --text-color: #000;
+}
+
 body {
   font-size: 16px;
   font-family: "Poppins", Arial, Helvetica, sans-serif;
@@ -59,8 +67,8 @@ body {
 
 .form-group input:focus {
   outline: none;
-  border: 1px solid #69f0ae;
-  box-shadow: 0px 0px 14px #69f0ae;
+  border: 1px solid var(--primary-color);
+  box-shadow: 0px 0px 14px var(--primary-color);
 }
 
 .form-group select {
@@ -74,7 +82,7 @@ body {
 }
 
 .input-error {
-  color: #ff6347;
+  color: var(--error-color);
 }
 
 .btn {
@@ -85,8 +93,8 @@ body {
 
 .btn:hover {
   cursor: pointer;
-  border: 1px solid #69f0ae;
-  box-shadow: 0px 0px 14px #69f0ae;
+  border: 1px solid var(--primary-color);
+  box-shadow: 0px 0px 14px var(--primary-color);
 }
 
 .btn:disabled {
@@ -94,11 +102,15 @@ body {
 }
 
 .btn-primary {
-  background-color: #00c853;
+  background-color: var(--primary-color-dark);
 }
 
 .btn-secondary {
   border: 1px solid #000;
+}
+
+.container {
+  padding: 0 3rem;
 }
 
 @media screen and (max-width: 420px) {
@@ -122,5 +134,9 @@ body {
   }
   .btn {
     margin-bottom: 0.8rem;
+  }
+
+  .container {
+    padding: 0 2rem;
   }
 }

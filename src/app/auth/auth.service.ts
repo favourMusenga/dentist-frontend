@@ -105,17 +105,23 @@ export class AuthService {
 
   private autoRefresh(expirationTime: number) {
     this.clearOutTimer = setTimeout(() => {
+      console.log('time is up');
+
       this.refresh();
     }, expirationTime);
   }
 
-  refresh(): void {
+  private refresh(): void {
     this.http
       .get<{ token: string; expireIn: number }>(
         `${environment.host}/refresh-token`
       )
       .subscribe({
         next: (tokenData) => {
+          const now = new Date();
+
+          now.setSeconds(now.getSeconds() + tokenData.expireIn);
+
           const newClient: IClient = {
             email: this.client.value?.email!,
             firstName: this.client.value?.firstName!,
@@ -124,6 +130,7 @@ export class AuthService {
             token: tokenData.token,
           };
 
+          newClient.date = now.getTime();
           this.client.next(newClient);
           localStorage.setItem('dentist-client', JSON.stringify(newClient));
           this.autoRefresh(tokenData.expireIn * 1000);
@@ -141,8 +148,6 @@ export class AuthService {
     }
 
     const tokenExpirationDate = new Date(user.date!);
-
-    console.log(tokenExpirationDate);
 
     if (!tokenExpirationDate || new Date() < tokenExpirationDate) {
       this.client.next(user);

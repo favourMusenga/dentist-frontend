@@ -11,6 +11,7 @@ import { AuthService } from '../auth.service';
 export class SignInComponent implements OnInit {
   @ViewChild('loginForm', { static: true }) loginFormEl!: NgForm;
   errorResponse: string = '';
+  isDisabled: boolean = false;
   constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {}
@@ -20,6 +21,7 @@ export class SignInComponent implements OnInit {
   }
 
   onSubmit() {
+    this.isDisabled = true;
     this.authService
       .signIn(this.loginFormEl.value.email, this.loginFormEl.value.password)
       .subscribe({
@@ -27,7 +29,10 @@ export class SignInComponent implements OnInit {
           this.loginFormEl.resetForm();
           this.router.navigateByUrl('/appointment/dashboard');
         },
-        error: (err) => (this.errorResponse = err.message),
+        error: (err) => {
+          this.isDisabled = false;
+          this.errorResponse = err.message;
+        },
       });
   }
 }
