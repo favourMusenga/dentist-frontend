@@ -34,6 +34,7 @@ export class SignUpComponent implements OnInit {
     ]),
     cPassword: new FormControl(null, [Validators.required]),
   });
+
   constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {}
