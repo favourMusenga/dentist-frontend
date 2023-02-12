@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { AppointmentService } from '../appointment.service';
 import { dentist } from '../types';
 import { AuthService } from './../../auth/auth.service';
@@ -14,10 +14,10 @@ export class CreateAppointmentComponent implements OnInit {
   isDisabled = false;
   hasError = false;
   response: string | null = null;
-  createAppointmentForm: FormGroup = new FormGroup({
-    dentist: new FormControl('', [Validators.required]),
-    date: new FormControl('', [Validators.required]),
-    time: new FormControl('', [Validators.required]),
+  createAppointmentForm: UntypedFormGroup = new UntypedFormGroup({
+    dentist: new UntypedFormControl('', [Validators.required]),
+    date: new UntypedFormControl('', [Validators.required]),
+    time: new UntypedFormControl('', [Validators.required]),
   });
   constructor(
     private appointmentService: AppointmentService,

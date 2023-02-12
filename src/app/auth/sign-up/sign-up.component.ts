@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -12,27 +12,27 @@ export class SignUpComponent implements OnInit {
   errorResponse: string = '';
   isDisabled = false;
 
-  signupForm: FormGroup = new FormGroup({
-    firstName: new FormControl(null, [
+  signupForm: UntypedFormGroup = new UntypedFormGroup({
+    firstName: new UntypedFormControl(null, [
       Validators.required,
       Validators.minLength(2),
     ]),
-    lastName: new FormControl(null, [
+    lastName: new UntypedFormControl(null, [
       Validators.required,
       Validators.minLength(2),
     ]),
-    email: new FormControl(null, [Validators.email, Validators.required]),
-    dob: new FormControl(null, Validators.required),
-    phoneNumber: new FormControl(null, [
+    email: new UntypedFormControl(null, [Validators.email, Validators.required]),
+    dob: new UntypedFormControl(null, Validators.required),
+    phoneNumber: new UntypedFormControl(null, [
       Validators.required,
       Validators.minLength(10),
     ]),
-    gender: new FormControl('male'),
-    password: new FormControl(null, [
+    gender: new UntypedFormControl('male'),
+    password: new UntypedFormControl(null, [
       Validators.minLength(6),
       Validators.required,
     ]),
-    cPassword: new FormControl(null, [Validators.required]),
+    cPassword: new UntypedFormControl(null, [Validators.required]),
   });
 
   constructor(private router: Router, private authService: AuthService) {}
